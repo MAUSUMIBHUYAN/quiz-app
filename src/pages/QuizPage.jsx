@@ -260,11 +260,11 @@ export default function QuizPage() {
             </div>
           </div>
 
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-wrap gap-4 mt-6">
             <button
               onClick={handlePreviousQuestion}
               disabled={currentQuestion === 0}
-              className={`px-6 py-3 rounded-lg font-medium transition ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition ${
                 currentQuestion === 0
                   ? `${disabledButtonBg} ${disabledButtonText} cursor-not-allowed`
                   : 'bg-emerald-500 text-white hover:bg-emerald-600'
@@ -273,20 +273,17 @@ export default function QuizPage() {
               Previous
             </button>
 
-            <div className="flex gap-3">
-            
-              <button
-                onClick={handleNextQuestion}
-                disabled={!selectedOption}
-                className={`px-6 py-3 rounded-lg font-medium transition ${
-                  selectedOption
-                    ? 'bg-emerald-500 text-white hover:bg-emerald-600'
-                    : `${disabledButtonBg} ${disabledButtonText} cursor-not-allowed`
-                }`}
-              >
-                {currentQuestion === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
-              </button>
-            </div>
+            <button
+              onClick={handleNextQuestion}
+              disabled={!selectedOption}
+              className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg font-medium transition ${
+                selectedOption
+                  ? 'bg-emerald-500 text-white hover:bg-emerald-600'
+                  : `${disabledButtonBg} ${disabledButtonText} cursor-not-allowed`
+              }`}
+            >
+              {currentQuestion === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
+            </button>
           </div>
         </div>
       </div>
