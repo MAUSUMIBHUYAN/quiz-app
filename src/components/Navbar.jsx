@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/theme-context";
 import { useAuth } from "../context/AuthContext";
-import { signOut, deleteUser } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase";
 
 import {
@@ -9,7 +9,6 @@ import {
   FaSun,
   FaUserCircle,
   FaPowerOff,
-  FaTrashAlt,
 } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { toast } from "react-toastify";
@@ -35,21 +34,6 @@ export default function Navbar() {
       .catch((error) => {
         toast.error("Logout failed: " + error.message);
       });
-  };
-
-  const handleDeleteAccount = () => {
-    if (
-      window.confirm("⚠️ This will permanently delete your account. Continue?")
-    ) {
-      deleteUser(auth.currentUser)
-        .then(() => {
-          toast.success("Account deleted successfully!");
-          setUser(null);
-        })
-        .catch((error) => {
-          toast.error("Deletion failed: " + error.message);
-        });
-    }
   };
 
   useEffect(() => {
@@ -133,14 +117,6 @@ export default function Navbar() {
                 >
                   <FaPowerOff className="text-emerald-600 dark:text-emerald-400" />
                   <span>Logout</span>
-                </button>
-
-                <button
-                  onClick={handleDeleteAccount}
-                  className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-red-50 dark:hover:bg-red-900 text-red-600 dark:text-red-400"
-                >
-                  <FaTrashAlt />
-                  <span>Delete Account</span>
                 </button>
               </div>
             )}
